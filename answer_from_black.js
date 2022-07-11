@@ -5,7 +5,7 @@ var nameListString2 =
 
 var nameListString3 =
   "AAA5 BBB5 CCC5 DDD5 EEE5 FFF5 GGG5 HHH5 " +
-  "III3 JJJ3 KKK5 LLL4 MMM2 NNN5 OOO5 PPP5" +
+  "III3 JJJ3 KKK5 LLL4 MMM5 NNN5 OOO5 PPP5" +
   " QQQ5 RRR5 SSS5 TTT5 UUU5 VVV5 WWW5 XXX5";
 
 var nameList = nameListString3.split(" ");
