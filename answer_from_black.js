@@ -1,8 +1,3 @@
-var nameListString2 =
-  "亭維4 彥皓5 柏維3 淑樺2 可樂5 阿斌3 哲萱3 思寧2 " +
-  "小范3 阿偉5 岳鋒5 阿倫5 Avan3 証凱4 Sean5 祐3" +
-  " 主恩5 小鈺2 阿胖1 阿瘦2 阿肥3 小戴3 豪兒3 昌讓3";
-
 var nameListString3 =
   "AAA5 BBB5 CCC5 DDD5 EEE5 FFF5 GGG5 HHH5 " +
   "III3 JJJ3 KKK5 LLL4 MMM5 NNN5 OOO5 PPP5" +
@@ -206,4 +201,12 @@ if (aQuotient == 3) {
   }
 }
 //If 強者介於12到17
-console.log(endList);
+
+var strReturn =
+  "各位球友好，我是汪星人\n以下是我為大家排得賽程\n希望大家會喜歡\n";
+for (var i = 0; i < 6; i++) {
+  strReturn += "\n" + "第" + (i + 1) + "組" + "\n";
+  strReturn += endList[i];
+}
+
+console.log(strReturn);
