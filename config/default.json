@@ -1,3 +1,5 @@
 {
-  "MovieDB_API_Key": "ab1156dbc06a502d132afb484822c709"
+  "MovieDB_API_Key": "ab1156dbc06a502d132afb484822c709",
+  "user": "root",
+  "password": "root"
 }

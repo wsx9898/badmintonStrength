@@ -1,9 +1,12 @@
 "use strict";
 const express = require("express"),
-  request = require("request");
+  request = require("request"),
+  mysql = require("mysql"),
+  mysqlFunc = require("./mysqlFunc"),
+  plaeyerFunc = require("./playerFunc");
 
 var app = express();
-var port = process.env.PORT || process.env.port || 1236;
+var port = process.env.PORT || process.env.port || 5000;
 app.set("port", port);
 
 app.use(express.json());
@@ -12,6 +15,8 @@ app.listen(app.get("port"), function () {
 });
 
 module.exports = app;
+
+mysqlFunc.sqlFunction(2);
 
 app.post("/webhook", function (req, res) {
   //1.DialogFlow會來呼叫這一支程式
@@ -24,25 +29,6 @@ app.post("/webhook", function (req, res) {
   var nameList = playersString.split("\n");
   console.log("nameList = ");
   console.log(nameList);
-
-  // //--------------------------------
-
-  // //已經改成這個效能比較好的
-  // function makeRandomNum() {
-  //   var temp = [];
-  //   for (var i = 0; i < 24; i++) {
-  //     temp.push(i);
-  //   }
-  //   var randomArr = [];
-  //   for (var i = 0; i < 24; i++) {
-  //     var randomNum = Math.floor(Math.random() * temp.length);
-  //     randomArr.push(temp[randomNum]);
-  //     temp.splice(randomNum, 1);
-  //   }
-  //   return randomArr;
-  // }
-
-  // var randomArr = makeRandomNum();
 
   // //----------------------------------------------------------------------------------------------
   var numberList = nameList.map((n) => {
@@ -86,24 +72,8 @@ app.post("/webhook", function (req, res) {
   // //現在十五位
   // console.log(b_team);
 
-  //產生亂數陣列
-  function makeRandomNum(randomRange) {
-    var temp = [];
-    for (var i = 0; i < randomRange; i++) {
-      temp.push(i);
-    }
-    var randomArr = [];
-    for (var i = 0; i < randomRange; i++) {
-      var randomNum = Math.floor(Math.random() * temp.length);
-      randomArr.push(temp[randomNum]);
-      temp.splice(randomNum, 1);
-    }
-    return randomArr;
-  }
-  //產生亂數陣列
-
-  var orderForA = makeRandomNum(a_team.length);
-  var orderForB = makeRandomNum(b_team.length);
+  var orderForA = plaeyerFunc.makeRandomNum(a_team.length);
+  var orderForB = plaeyerFunc.makeRandomNum(b_team.length);
 
   var aTeamShuffled = [];
   for (i = 0; i < a_team.length; i++) {
@@ -130,8 +100,6 @@ app.post("/webhook", function (req, res) {
     endList[i] = new Array(4);
   }
   //好像JS二維陣列要這樣創
-
-  //Todo我沒有做全部aTeam或全部bTeam
 
   //case1
   //If 強者少於6
@@ -240,7 +208,6 @@ app.post("/webhook", function (req, res) {
     }
   }
   //If 強者介於12到17
-  // console.log(endList);
 
   //------------------------------------------------------------------------------------------
 
